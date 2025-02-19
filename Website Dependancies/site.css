@@ -33,7 +33,7 @@
 		flex: 1;
 	}
 	section { 
-	background-color: white;
+	background-color: rgb(158, 139, 161);
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -57,14 +57,20 @@ body {
 
 h1 {
 	font-size: 3rem;
-	color: white;
+	color: rgb(0, 0, 0);
 	display: block;
 	text-align: center;
+	border: 2px solid #573b64;
+	padding: 7px;
+	background-color: #573b64;
+	border-radius: 50px;
+	width: 50%;
+	margin: 0 auto;
 }
 
 h2,h3,h4 {
 	font-size: 1.8rem;
-	color: black;
+	color: rgb(255, 200, 0);
 	display: block;
 	text-align: left;
 	padding-left: 25%;
@@ -74,7 +80,7 @@ h2,h3,h4 {
 
 p {
 	font-size: 1.4em;
-	color: black;
+	color: rgb(255, 200, 00);
 	padding: 10px 40px 10px 40px;
 }
 
@@ -108,7 +114,7 @@ header {
 }
 
 .bg1 {
-	background-color: #ffe400;
+	background-color: #573b64;
 }
 
 .bg2 {
@@ -136,5 +142,5 @@ footer {
 }
 
 #incomplete {
-	background-color: red;
+	background-color: rgb(255, 208, 0);
 }
