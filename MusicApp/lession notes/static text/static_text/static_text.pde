@@ -30,7 +30,7 @@ void setup() {
   String musicPathway = "Music/";
   //Note: Download music and sound effects, then design your player with images, text, and 2D shapes
   //See Google Search: Atari pong logo free image download
-  String song = "groove";
+  String song = "Ghost_Walk.mp3";
   //Add all files, CS20 Review is special OS Java Library
   //Including the reading of the number of files in the array
   String fileExtension_mp3 = ".mp3";
@@ -92,7 +92,70 @@ void draw() {
 } //End Draw
 //
 void mousePressed() {} //End Mouse Pressed
+ //mouseX> && mouseX< && mouseY> && mouseY<
+  if ( mouseX>quitButtonX && mouseX<quitButtonX+quitButtonWidth && mouseY>quitButtonY && mouseY<quitButtonY+quitButtonHeight ) {
+    if ( quitDoubleClick==false ) {
+      for ( int i=0; i<rectNumber; i++ ) {
+        println("Rectangle", i + " (%):", int( (divX[i]/appWidth)*100 ), int( (divY[i]/appHeight)*100 ), int( (divWidth[i]/appWidth)*100 ), int( (divHeight[i]/appHeight)*100 ) );
+      }
+    }
+    noLoop(); //First QUIT Click enables printScreen in OS
+    if ( quitDoubleClick==true ) exit(); //Second QUIT Closes CANVAS
+    quitDoubleClick=true;
+  } //End Quit Button
+  if ( mouseX>beginningRectButtonX && mouseX<beginningRectButtonX+beginningRectButtonWidth && mouseY>beginningRectButtonY && mouseY<beginningRectButtonY+beginningRectButtonHeight ) {
+    drawNewRect=true;
+  } //End Rect() Grab
+  //
+  //Resize Width & Height
+  for ( int i=0; i<rectNumber; i++ ) {
+    if ( mouseX>divX[i] && mouseX<divX[i]+divWidth[i] && mouseY>divY[i] && mouseY<divY[i]+divHeight[i] ) {
+      resizeWidth=resizeHeight=true;
+      newXTemp = mouseX;
+      newYTemp = mouseY;
+      newWidthTemp = divWidth[i];
+      newHeightTemp = divHeight[i];
+      rectWidthChange = rectHeightChange = i;
+      deleteRectActivated=true;
+      deleteThisRect=i;
+    }
+  //
+ //End mousePressed
 //
 void keyPressed() {} //End Key Pressed
+  if ( drawNewRect==true ) {
+    divX[rectNumber] = newX;
+    divY[rectNumber] = newY;
+    divWidth[rectNumber] = newWidth;
+    divHeight[rectNumber] = newHeight;
+    newX = newY = 0;
+    drawNewRect = false;
+    rectNumber++;
+    divX = append(divX, 0);
+    divY = append(divY, 0);
+    divWidth = append(divWidth, 0);
+    divHeight = append(divHeight, 0);
+  } //End Placing Rectangle
+  //
+  if ( resizeWidth==true ) {
+    divWidth[rectWidthChange] = newWidthTemp + ( mouseX-newXTemp ) ;
+    resizeWidth=false;
+  } //End Resize Width
+  if ( resizeHeight==true ) {
+    divHeight[rectHeightChange] = newHeightTemp + ( mouseY-newYTemp );
+    resizeHeight=false;
+  } //End Resize Height
+  //
+} //End Mouse Release
 //
+void keyPressed() {
+  //Currently deletes most recent rectangle, nothing more
+  divX = shorten(divX);
+  divY = shorten(divY);
+  divWidth = shorten(divWidth);
+  divHeight = shorten(divHeight);
+  rectNumber--;
+  //
+} //End keyPressed
+
 //End
