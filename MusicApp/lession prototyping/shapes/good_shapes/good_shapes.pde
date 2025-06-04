@@ -1,13 +1,15 @@
 // Global Variables
 float appWidth, appHeight;
 float closeX, closeY, closeWidth, closeHeight;
-float imgX, imgY, imgWidth, imgHeight;
+
 float artnameX, artnameY, artnameWidth, artnameHeight;
 float songnameX, songnameY, songnameWidth, songnameHeight;
 float timeleftX, timeleftY, timeleftWidth, timeleftHeight;
 float timeremX, timeremY, timeremWidth, timeremHeight;
 float mscbarX, mscbarY, mscbarWidth, mscbarHeight;
 //
+
+float imgX, imgY, imgWidth, imgHeight;
 float imageDivX, imageDivY, imageDivWidth, imageDivHeight;
 float stopDivX, stopDivY, stopDivWidth, stopDivHeight;
 float muteDivX, muteDivY, muteDivWidth, muteDivHeight;
@@ -41,50 +43,19 @@ float fastRewindX4, fastRewindY4, fastRewindX5, fastRewindY5, fastRewindX6, fast
 float loopOnceX, loopOnceY, loopOnceWidth, loopOnceHeight;
 float loopOnceX1, loopOnceY1, loopOnceX2, loopOnceY2, loopOnceX3, loopOnceY3;
 
+void setup() {
+  // Display
+  fullScreen();
+  //size(700, 500);
+  int appWidth = displayWidth; //width
+  int appHeight = displayHeight; //height
+  int appShortSide = ( appWidth < appHeight ) ? appWidth : appHeight ;
 
 
-void draw() {
-  background(50);
-
-  // Close Button
-  closeX = appWidth * 0.010;
-  closeY = appHeight * 0.010;
-  closeWidth = appWidth * 0.04;
-  closeHeight = appHeight * 0.07;
-
-  // Image Area
-  imgX = appWidth * 0.33;
-  imgY = appHeight * 0.03;
-  imgWidth = appWidth * 0.30;
-  imgHeight = appHeight * 0.45;
-
-  // Music Bar
-  mscbarX = appWidth * 0.27;
-  mscbarY = appHeight * 0.57;
-  mscbarWidth = appWidth * 0.42;
-  mscbarHeight = appHeight * 0.02;
-
-
-  // Text Areas
-  artnameX = appWidth * 0.27;
-  artnameY = appHeight * 0.49;
-  artnameWidth = appWidth * 0.25;
-  artnameHeight = appHeight * 0.03;
-
-  songnameX = appWidth * 0.27;
-  songnameY = appHeight * 0.53;
-  songnameWidth = appWidth * 0.25;
-  songnameHeight = appHeight * 0.03;
-
-  timeleftX = appWidth * 0.21;
-  timeleftY = appHeight * 0.57;
-  timeleftWidth = appWidth * 0.05;
-  timeleftHeight = appHeight * 0.04;
-
-  timeremX = appWidth * 0.70;
-  timeremY = appHeight * 0.57;
-  timeremWidth = appWidth * 0.05;
-  timeremHeight = appHeight * 0.04;
+  imgX = appWidth*0.33;
+  imgY = appHeight*0.03;
+  imgWidth = appWidth*0.30;
+  imgHeight = appHeight*0.45;
 
 
   // Draw Rectangles for UI Elements
@@ -99,18 +70,12 @@ void draw() {
   rect(songnameX, songnameY, songnameWidth, songnameHeight); // Song Name
   rect(timeleftX, timeleftY, timeleftWidth, timeleftHeight); // Time Left
   rect(timeremX, timeremY, timeremWidth, timeremHeight); // Time Remaining
-}
 
 
 
-//
-void setup() {
-  // Display
-  fullScreen();
-  //size(700, 500);
-  int appWidth = displayWidth; //width
-  int appHeight = displayHeight; //height
-  int appShortSide = ( appWidth < appHeight ) ? appWidth : appHeight ;
+
+  //
+
   //
   //Population
 
@@ -118,7 +83,7 @@ void setup() {
   imageDivY = appHeight*1/5;
   imageDivWidth = appWidth*1/2;
   imageDivHeight = appHeight*1.5/5; //1+1.5=2.5, half of the total height
- 
+
   //
   //rect(DIV) is a square to start, by design
   int numberOfButtons = 13; //Half a button on either side as space, Center Button is Play
@@ -220,7 +185,10 @@ void setup() {
   pauseWidth2 = pauseDivWidth*1/8;
   pauseHeight2 = pauseDivHeight*1/2;
   //
-  playDivX = beginningButtonSpace + widthOfButton*5; //TEACHER Only" manipulate this number to draw simulate all buttons
+  playDivX = beginningButtonSpace + widthOfButton*5;
+
+
+
   playDivY = buttonY;
   playDivWidth = widthOfButton;
   playDivHeight = widthOfButton;
@@ -288,17 +256,61 @@ void setup() {
   shuffleDivWidth = widthOfButton;
   shuffleDivHeight = widthOfButton;
   //
-  float musicSongPaddingY = widthOfButton*1/4;
-  float musicSongSpaceX = stopDivX;
-  float musicSongSpaceY = stopDivY + widthOfButton + musicSongPaddingY;
-  float musicSongSpaceWidth = appWidth - widthOfButton*2;
-  float musicSongSpaceHeight = appHeight - musicSongPaddingY - musicSongSpaceY;
+}
+void draw() {
+  background(50);
+
+  rect(imgX, imgY, imgWidth, imgHeight);
+
+
+  // Close Button
+  closeX = appWidth * 0.010;
+  closeY = appHeight * 0.010;
+  closeWidth = appWidth * 0.04;
+  closeHeight = appHeight * 0.07;
+
+  // Image Area
+  imageDivX = appWidth * 0.33;
+  imageDivY = appHeight * 0.03;
+  imageDivWidth = appWidth * 0.30;
+  imageDivHeight = appHeight * 0.45;
+
+  // Music Bar
+  mscbarX = appWidth * 0.27;
+  mscbarY = appHeight * 0.57;
+  mscbarWidth = appWidth * 0.42;
+  mscbarHeight = appHeight * 0.02;
+
+
+  // Text Areas
+  artnameX = appWidth * 0.27;
+  artnameY = appHeight * 0.49;
+  artnameWidth = appWidth * 0.25;
+  artnameHeight = appHeight * 0.03;
+
+  songnameX = appWidth * 0.27;
+  songnameY = appHeight * 0.53;
+  songnameWidth = appWidth * 0.25;
+  songnameHeight = appHeight * 0.03;
+
+  timeleftX = appWidth * 0.21;
+  timeleftY = appHeight * 0.57;
+  timeleftWidth = appWidth * 0.05;
+  timeleftHeight = appHeight * 0.04;
+
+  timeremX = appWidth * 0.70;
+  timeremY = appHeight * 0.57;
+  timeremWidth = appWidth * 0.05;
+  timeremHeight = appHeight * 0.04;
+
+
+ 
   //rect(musicSongSpaceX, musicSongSpaceY, musicSongSpaceWidth, musicSongSpaceHeight); //testing only
 
   //
   //DIVs
   //rect(X, Y, Width, Height)
-
+  println(imageDivX);
   rect(imageDivX, imageDivY, imageDivWidth, imageDivHeight);
   rect(stopDivX, stopDivY, stopDivWidth, stopDivHeight);  //*0
   rect(muteDivX, muteDivY, muteDivWidth, muteDivHeight); //*1
@@ -322,10 +334,11 @@ void setup() {
   line(muteUpPoint1X, muteUpPoint1Y, muteUpPoint2X, muteUpPoint2Y);
   line(muteCross1X1, muteCross1Y1, muteCross1X2, muteCross1Y2);
   line(muteCross2X1, muteCross2Y1, muteCross2X2, muteCross2Y2);
+
   //Previous Button
   rect(prevX, prevY, prevWidth, prevHeight);
   triangle(prevX1, prevY1, prevX2, prevY2, prevX3, prevY3);
-  //Fast Rewind
+ //Fast Rewind
   triangle(fastRewindX1, fastRewindY1, fastRewindX2, fastRewindY2, fastRewindX3, fastRewindY3);
   triangle(fastRewindX4, fastRewindY4, fastRewindX5, fastRewindY5, fastRewindX6, fastRewindY6);
   triangle(playX1, playY1, playX2, playY2, playX3, playY3);
@@ -336,8 +349,8 @@ void setup() {
   rect(loopOnceX, loopOnceY, loopOnceWidth, loopOnceHeight);
   triangle(loopOnceX1, loopOnceY1, loopOnceX2, loopOnceY2, loopOnceX3, loopOnceY3);
 }
+
 void mousePressed() {
-  
 }
 // Add interactivity here if needed
 
